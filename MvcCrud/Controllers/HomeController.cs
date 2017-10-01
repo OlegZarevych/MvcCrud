@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcCrud.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,13 @@ namespace MvcCrud.Controllers
 {
     public class HomeController : Controller
     {
+        DataContext db = new DataContext();
+
         public ActionResult Index()
         {
+            IEnumerable<Person> persons = db.Persons;
+
+            ViewBag.Persons = persons;
             return View();
         }
 
