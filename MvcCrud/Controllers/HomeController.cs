@@ -10,14 +10,42 @@ namespace MvcCrud.Controllers
     public class HomeController : Controller
     {
         DataContext db = new DataContext();
+        IEnumerable<Person> persons;
 
         public ActionResult Index()
         {
-            IEnumerable<Person> persons = db.Persons;
+            persons = db.Persons;
 
             ViewBag.Persons = persons;
             return View();
         }
+
+        [HttpPost]
+        public string AddPerson(string name, string lastName, string age)
+        {
+            Person person = new Person();
+            person.Name = name;
+            person.LastName = lastName;
+            person.Age = Int32.Parse(age);
+            person.Time = DateTime.Now;
+            db.Persons.Add(person);
+            db.SaveChanges();
+
+            //       return View("Index");
+            return "Thanks !!!";
+        }
+
+        public ActionResult DeletePerson()
+        {
+            return View();
+        }
+
+        public ActionResult EditPerson()
+        {
+            return View();
+        }
+
+
 
         public ActionResult About()
         {
