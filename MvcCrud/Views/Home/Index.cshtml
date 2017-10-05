@@ -27,13 +27,7 @@
         }
     </table>
     <br/>
-    <form method="POST" action="/Home/AddPerson">
-        <input type="text" name="Name" placeholder="Name.." />
-        <input type="text" name="LastName" placeholder="Last Name.." />
-        <input type="text" name="Age" placeholder="Age.." />
 
-        <!--  <button type="button" onclick="location.href='@Url.Action("AddPerson", "Home")'">Add</button> -->
+        <input type="button" title="add" value="Add" onclick="location.href='@Url.Action("AddPerson", "Home")'" />
 
-        <input type="submit" title="add" value="Add" " />
-        </form>
 </div>

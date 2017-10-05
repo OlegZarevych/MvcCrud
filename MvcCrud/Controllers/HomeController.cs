@@ -9,7 +9,7 @@ namespace MvcCrud.Controllers
 {
     public class HomeController : Controller
     {
-        DataContext db = new DataContext();
+        public DataContext db = new DataContext();
         IEnumerable<Person> persons;
 
         public ActionResult Index()
@@ -20,19 +20,11 @@ namespace MvcCrud.Controllers
             return View();
         }
 
-        [HttpPost]
-        public string AddPerson(string name, string lastName, string age)
+        [HttpGet]
+        public ActionResult AddPerson()
         {
-            Person person = new Person();
-            person.Name = name;
-            person.LastName = lastName;
-            person.Age = Int32.Parse(age);
-            person.Time = DateTime.Now;
-            db.Persons.Add(person);
-            db.SaveChanges();
-
             //       return View("Index");
-            return "Thanks !!!";
+            return View("~/Views/Add/AddPerson.cshtml");
         }
 
         public ActionResult DeletePerson()
