@@ -20,21 +20,45 @@ namespace MvcCrud.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult AddPerson()
+        [HttpPost]
+        public ActionResult AddPerson(string name, string lastName, string age)
         {
             //       return View("Index");
-            return View("~/Views/Add/AddPerson.cshtml");
+            // return View("~/Views/Add/AddPerson.cshtml");
+            Person person = new Person()
+            {
+                Name = name,
+                LastName = lastName,
+                Age = Int32.Parse(age),
+                Time = DateTime.Now,
+            };
+
+            db.Persons.Add(person);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
-        public ActionResult DeletePerson()
+        public ActionResult DeletePerson(int id)
         {
-            return View();
+            var idToDelete = db.Persons.Find(id);
+            db.Persons.Remove(idToDelete);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
-        public ActionResult EditPerson()
+        public ActionResult EditPerson(int id, string name, string lastName, string age)
         {
-            return View();
+            Person person = new Person()
+            {
+                Name = name,
+                LastName = lastName,
+                Age = Int32.Parse(age),
+                Time = DateTime.Now,
+            };
+
+            
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
 

@@ -20,14 +20,23 @@
                     <td><p>@b.LastName</p></td>
                     <td><p>@b.Age</p></td>
                     <td><p>@b.Time</p></td>
-                    <td><p><a href="/Home/Delete/@b.Id">Delete</a></p></td>
-                    <td><p><a href="/Home/Edit/@b.Id">Edit</a></p></td>
+                    <td><p><a href="/Home/DeletePerson/@b.Id">Delete</a></p></td>
+                    <td><p><a href="/Home/EditPerson/@b.Id">Edit</a></p></td>
                 </tr>
             </div>
         }
     </table>
     <br/>
+<div id="form">
+    <form method="POST" action="/Home/AddPerson">
+        <input type="text" name="Name" placeholder="Name.." />
+        <input type="text" name="LastName" placeholder="Last Name.." />
+        <input type="text" name="Age" placeholder="Age.." />
 
-        <input type="button" title="add" value="Add" onclick="location.href='@Url.Action("AddPerson", "Home")'" />
+        <!--  <button type="button" onclick="location.href='@Url.Action("AddPerson", "Add")'">Add</button> -->
+
+        <input type="submit" title="add" value="Add" />
+    </form>
+</div>
 
 </div>
