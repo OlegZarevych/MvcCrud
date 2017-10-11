@@ -4,19 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static MvcCrud.Models.DataContextWrapper;
 
 namespace MvcCrud.Controllers
 {
     public class HomeController : Controller
     {
-        public DataContext db = new DataContext();
-        IEnumerable<Person> persons;
-
         public ActionResult Index()
         {
-            persons = db.Persons;
-
-            ViewBag.Persons = persons;
+            ViewBag.Persons = GetPersons();
             return View();
         }
 
@@ -33,35 +29,22 @@ namespace MvcCrud.Controllers
                 Time = DateTime.Now,
             };
 
-            db.Persons.Add(person);
-            db.SaveChanges();
+            DataContextWrapper.AddPerson(person);
             return RedirectToAction("Index");
         }
 
         public ActionResult DeletePerson(int id)
         {
-            var idToDelete = db.Persons.Find(id);
-            db.Persons.Remove(idToDelete);
-            db.SaveChanges();
+            DataContextWrapper.DeletePerson(id);
             return RedirectToAction("Index");
         }
 
-        public ActionResult EditPerson(int id, string name, string lastName, string age)
+        [HttpGet]
+        public ActionResult EditPerson(int id)
         {
-            Person person = new Person()
-            {
-                Name = name,
-                LastName = lastName,
-                Age = Int32.Parse(age),
-                Time = DateTime.Now,
-            };
-
-            
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            ViewBag.Id = id;
+            return View("~/Views/Edit/Edit.cshtml");
         }
-
-
 
         public ActionResult About()
         {

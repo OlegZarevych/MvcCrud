@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using MvcCrud.Models;
+using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -11,7 +12,7 @@ namespace MvcCrud
         {
 
             Database.SetInitializer(new Models.PersonDbInitialization());
-
+            DataContextWrapper.getInstance();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

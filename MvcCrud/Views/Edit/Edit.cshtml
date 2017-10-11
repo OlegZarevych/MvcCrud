@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+<div id="form">
+    <form method="POST" action="/Edit/EditPerson/@ViewBag.Id">
+        <input type="text" name="Name" placeholder="Name.." />
+        <input type="text" name="LastName" placeholder="Last Name.." />
+        <input type="text" name="Age" placeholder="Age.." />
+
+        <input type="submit" title="Edit" value="Edit" />
+    </form>
+</div>
